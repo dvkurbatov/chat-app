@@ -1,0 +1,5 @@
+<%= form_with(model: @user, url: sessions_path) do |user_form| %>
+<%= user_form.label :nickname, "Введите ваш никнейм"%>
+<%= user_form.text_field :nickname %>
+<%= user_form.submit %>
+<% end %>

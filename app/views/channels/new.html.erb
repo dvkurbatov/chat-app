@@ -1,0 +1,5 @@
+<%= form_with(model: @channel, url: channels_path) do |channel_form| %>
+<%= channel_form.label :title, "Введите название чата"%>
+<%= channel_form.text_field :title %>
+<%= channel_form.submit %>
+<% end %>
