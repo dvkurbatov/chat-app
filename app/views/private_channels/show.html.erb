@@ -1,15 +1,10 @@
 
-<h1><%= @channel.title %></h1>
 
 <div id="messages">
   <% if @messages.present? %>
     <% @messages.each do |message| %>
     <div>
-      <% if message.user != current_user %>
-      <%= link_to message.user.nickname, private_channels_path(user_id: message.user.id), method: :create %>
-      <% else %>
-        <span><%= message.user.nickname %>: <%= message.text %></span>
-      <% end %>
+      <span><%= message.user.nickname %>: <%= message.text %></span>
     </div>
     <% end %>
   <% else %>
@@ -22,11 +17,11 @@
 <%= form_with(model: @message, url: messages_path(@message)) do |message_form| %>
 <%= message_form.label :text, "Введите сообщение"%>
 <%= message_form.text_field :text %>
-<%= message_form.hidden_field :channel_id, value: @channel.id %>
+<%= message_form.hidden_field :channel_id, value: @private_channel.id %>
 <%= message_form.submit %>
 <% end %>
 </div>
 <br>
 <div>
-  <%= link_to 'Покинуть канал', channels_path, method: :get %>
+  <%= link_to 'Покинуть канал', private_channels_path, method: :get %>
 </div>

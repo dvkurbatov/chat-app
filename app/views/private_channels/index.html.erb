@@ -1,0 +1,15 @@
+<h1> Выберите пользователя </h1>
+
+<% if @users.present? %>
+  <% @users.each do |user| %>
+    <div><%= link_to user.nickname, private_channels_path(user_id: user.id), method: :create %></div>
+  <% end %>
+<% end %>
+
+<%= link_to new_channel_path do %>
+  Создать новый канал
+<% end %>
+<br>
+<%= link_to private_channels_path do %>
+  Приватные каналы
+<% end %>
