@@ -10,7 +10,10 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require cable
+//= require jquery
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require channels
 //= require_tree .

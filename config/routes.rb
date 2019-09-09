@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :channels
   resources :messages, only: [:create]
+
+  mount ActionCable.server => '/cable'
 end
