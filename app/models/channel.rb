@@ -1,5 +1,5 @@
 class Channel < ApplicationRecord
   validates :title, uniqueness: true, presence: true
 
-  has_many :messages, as: :imageable
+  has_many :messages
 end

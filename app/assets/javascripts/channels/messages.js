@@ -1,6 +1,9 @@
 App.messages = App.cable.subscriptions.create('MessagesChannel', {
   received: function(data) {
-    //$('#messages').children().first().remove();
+    $("#empty_chat").remove();
+    if ($('#messages').children().length > 10){
+      $('#messages').children().first().remove();
+    }
     $("#messages").append(this.renderMessage(data));
   },
   renderMessage: function(data) {

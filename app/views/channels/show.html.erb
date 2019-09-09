@@ -5,15 +5,11 @@
   <% if @messages.present? %>
     <% @messages.each do |message| %>
     <div>
-      <% if message.user != current_user %>
-      <%= link_to message.user.nickname, private_channels_path(user_id: message.user.id), method: :create %>
-      <% else %>
         <span><%= message.user.nickname %>: <%= message.text %></span>
-      <% end %>
     </div>
     <% end %>
   <% else %>
-  <div> Сообщений в чате нет </div>
+  <div id='empty_chat'> Сообщений в чате нет </div>
   <% end %>
 </div>
 <br>
