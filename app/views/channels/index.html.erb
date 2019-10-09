@@ -2,7 +2,7 @@
 
 <% if @channels.present? %>
   <% @channels.each do |channel| %>
-    <div><%= link_to channel.title, channel_path(channel) %></div>
+    <div><%= link_to channel.title, channel_path(channel), method: :get %></div>
   <% end %>
 <% end %>
 <br>

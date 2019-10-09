@@ -1,5 +1,5 @@
-
-<h1><%= @channel.title %></h1>
+<%= content_for(:head_attributes) do %>data-channel-id="<%= @channel.id %>"<% end %>
+<h1 data-channel-id="<%= @channel.id  %>"><%= @channel.title %></h1>
 
 <div id="messages">
   <% if @messages.present? %>

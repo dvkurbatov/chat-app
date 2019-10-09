@@ -1,4 +1,8 @@
-App.messages = App.cable.subscriptions.create('MessagesChannel', {
+console.log(document.querySelector('head').dataset.channelId);
+App.messages = App.cable.subscriptions.create({
+  channel: 'MessagesChannel',
+  channel_id: document.querySelector('head').dataset.channelId
+}, {
   received: function(data) {
     $("#empty_chat").remove();
     if ($('#messages').children().length > 10){
@@ -6,7 +10,17 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
     }
     $("#messages").append(this.renderMessage(data));
   },
+  connected: function(data) {
+    console.log('connected');
+  },
+  rejected: function(data) {
+    console.log('reject!');
+  },
+  disconnected: function(data) {
+    console.log('disconnected')
+  },
   renderMessage: function(data) {
     return '<div><span>' + data.nickname + ': ' + data.message + '</span></div>';
   }
 });
+

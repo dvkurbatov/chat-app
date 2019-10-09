@@ -18,7 +18,6 @@ class ChannelsController < ApplicationController
   def show
     @channel = Channel.find_by(id: params[:id])
     redirect_to channels_path unless @channel
-
-    @messages = @channel&.messages&.includes(:user)&.order(created_at: :asc)&.last(10)
+    @channel
   end
 end
