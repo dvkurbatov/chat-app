@@ -1,4 +1,6 @@
 class ChannelsController < ApplicationController
+  before_action :authenticate
+
   def new
   end
 
@@ -18,6 +20,6 @@ class ChannelsController < ApplicationController
   def show
     @channel = Channel.find_by(id: params[:id])
     redirect_to channels_path unless @channel
-    @channel
+    @messages = @channel.messages.order(created_at: :desc).first(10)
   end
 end
