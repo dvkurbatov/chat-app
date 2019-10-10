@@ -1,7 +1,8 @@
-console.log(document.querySelector('head').dataset.channelId);
+console.log(document.querySelector('head').dataset.channelType);
 App.messages = App.cable.subscriptions.create({
   channel: 'MessagesChannel',
-  channel_id: document.querySelector('head').dataset.channelId
+  listener_type: document.querySelector('head').dataset.listenerType,
+  listener_id: document.querySelector('head').dataset.listenerId
 }, {
   received: function(data) {
     $("#empty_chat").remove();
@@ -20,7 +21,7 @@ App.messages = App.cable.subscriptions.create({
     console.log('disconnected')
   },
   renderMessage: function(data) {
-    return '<div><span>' + data.nickname + ': ' + data.message + '</span></div>';
+    return '<div><span>' + data.nickname + ': ' + data.text + '</span></div>';
   }
 });
 

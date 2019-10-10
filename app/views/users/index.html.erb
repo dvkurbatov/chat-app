@@ -3,7 +3,7 @@
     <div class='col-10 align-self-center'>
       <div class="list-group">
         <% @users.each do |user| %>
-          <span class ='list-group-item'> <%= user.nickname %></span>
+          <%= link_to user.nickname, user_path(user), method: :get, class: 'list-group-item ' %>
         <% end %>
     </div>
   </div>

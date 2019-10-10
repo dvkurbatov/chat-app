@@ -1,7 +1,7 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
-    if params[:channel_id]
-      stream_from "channel_#{params[:channel_id]}"
+    if params[:listener_id] && params[:listener_type]
+      stream_from "#{params[:listener_type]}_#{params[:listener_id]}"
     else
       reject
     end
