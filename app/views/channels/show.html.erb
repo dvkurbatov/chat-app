@@ -18,7 +18,7 @@
 <br>
 
 <div id='new_message_form'>
-<%= form_with(model: @message, url: messages_path(@message), data-params="id=10") do |message_form| %>
+<%= form_with(model: @message, url: messages_path(@message)) do |message_form| %>
 <%= message_form.label :text, "Введите сообщение"%>
 <%= message_form.text_field :text %>
 <%= message_form.hidden_field :channel_id, value: @channel.id %>

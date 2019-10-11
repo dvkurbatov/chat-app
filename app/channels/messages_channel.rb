@@ -3,7 +3,7 @@ class MessagesChannel < ApplicationCable::Channel
     if params[:listener_id] && params[:listener_type]
       stream_from "#{params[:listener_type]}_#{params[:listener_id]}"
     else
-      reject
+      stream_from "channels"
     end
 
     logger.info("#{Time.current}: subscribed calling! channel: #{params[:channel_id]}")

@@ -5,6 +5,6 @@ class UsersController < ApplicationController
     @messages = Message.where(author: current_user, listener: @user).or(Message.where(listener: current_user, author: @user))
   end
   def index
-    @users = User.all
+    @users = User.all_except(current_user)
   end
 end

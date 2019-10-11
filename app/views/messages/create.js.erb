@@ -1,6 +1,8 @@
-if ($('#messages').children().length > 10){
-  $('#messages').children().first().remove();
-}
-var nickname = '<%= current_user.nickname %>',
+<% if params[:user_id].present? %>
+  if ($('#messages').children().length > 10){
+    $('#messages').children().first().remove();
+  }
+  var nickname = '<%= current_user.nickname %>',
     text = '<%= params[:text] %>'
-$("#messages").append('<div><span>' + nickname + ': ' + text + '</span></div>');
+  $("#messages").append('<div><span>' + nickname + ': ' + text + '</span></div>');
+<% end %>

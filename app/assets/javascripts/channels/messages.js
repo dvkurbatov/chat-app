@@ -5,6 +5,7 @@ App.messages = App.cable.subscriptions.create({
   listener_id: document.querySelector('head').dataset.listenerId
 }, {
   received: function(data) {
+    console.log('received');
     $("#empty_chat").remove();
     if ($('#messages').children().length > 10){
       $('#messages').children().first().remove();
