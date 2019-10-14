@@ -1,0 +1,33 @@
+<%= content_for(:head_attributes) do %>
+  data-listener-id="<%= @user.id %>"
+  data-listener-type="user"
+<% end %>
+
+<div class="container">
+  <div class='col-10 align-self-center'>
+    <h5>Приватный</h5>
+    <div id="messages">
+      <% if @messages.present? %>
+        <% @messages.each do |message| %>
+          <div>
+            <span><%= message.author.nickname %>: <%= message.text %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <div id='empty_chat'> Сообщений в чате нет </div>
+      <% end %>
+    </div>
+    <div id='new_message_form'>
+      <%= form_with(model: @message, url: messages_path(@message)) do |form| %>
+        <%= form.text_field :text, class: 'form-control', placeholder: 'Сообщение' %>
+        <%= form.hidden_field :user_id, value: @user.id %>
+        <%= form.button 'Отправить', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to 'Покинуть канал', channels_path, method: :get %>
+    </div>
+  </div>
+</div>
+
+

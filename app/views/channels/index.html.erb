@@ -1,13 +1,19 @@
-<h1> Каналы </h1>
+<div class='container'>
+ <div class="row">
+  <div class='col-10 align-self-center'>
+    <% if @channels.present? %>
+      <div class="list-group">
+        <span class="list-group-item">Чаты</span>
+        <% @channels.each do |channel| %>
+          <%= link_to channel.title, channel_path(channel), method: :get, class: 'list-group-item ' %>
+        <% end %>
+      </div>
+    <% end %>
 
-<% if @channels.present? %>
-  <% @channels.each do |channel| %>
-    <div><%= link_to channel.title, channel_path(channel) %></div>
-  <% end %>
-<% end %>
-<br>
-
-<%= link_to new_channel_path do %>
-  Создать новый канал
-<% end %>
-
+    <%= link_to new_channel_path do %>
+      Создать новый канал
+    <% end %>
+  </div>
+</div>
+</div>
+</div>

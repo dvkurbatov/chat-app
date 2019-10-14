@@ -1,5 +1,13 @@
-<%= form_with(model: @channel, url: channels_path) do |channel_form| %>
-<%= channel_form.label :title, "Введите название чата"%>
-<%= channel_form.text_field :title %>
-<%= channel_form.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class='col-10 align-self-center'>
+      <%= form_with(model: @channel, url: channels_path) do |form| %>
+        <div class="form-group">
+          <%= form.label :title, 'Название чата'%>
+          <%= form.text_field :title, class: 'form-control', placeholder: 'Введите название чата'%>
+        </div>
+        <%= form.button 'Подтвердить', class: 'btn btn-primary'%>
+      <% end %>
+    </div>
+  </div>
+</div>
