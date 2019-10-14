@@ -5,15 +5,13 @@ App.messages = App.cable.subscriptions.create({
   listener_id: document.querySelector('head').dataset.listenerId
 }, {
   received: function(data) {
-
-    if (data.listener == document.querySelector('head').getAttribute('data-listener-id')){
-      console.log('true');
-      $("#empty_chat").remove();
-      if ($('#messages').children().length > 10){
-        $('#messages').children().first().remove();
-      }
-      $("#messages").append(this.renderMessage(data));
+    if (document.querySelector('div.dropdown').dataset.currentUserId == data.listener){
+    $("#empty_chat").remove();
+    if ($('#messages').children().length > 10){
+      $('#messages').children().first().remove();
     }
+    $("#messages").append(this.renderMessage(data));
+  }
   },
   connected: function(data) {
     console.log('connected');
