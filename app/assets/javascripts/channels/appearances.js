@@ -1,15 +1,19 @@
 App.appearances = App.cable.subscriptions.create("AppearanceChannel", {
   appear: function(){
-    console.log('apear')
+    console.log('apear');
   },
   received: function(data) {
     var user_id = data.id
     var action = data.action
-    var selector = 'li.list-group-item.user-id-' + user_id;
-    if (action == 'append') {
-      $(selector).append('<span class="glyphicon glyphicon-ok">online</span>')
+    var selector = 'list-group-item   user-id-' + user_id;
+    if (action == 'appear') {
+      let onlineStatus = document.createElement('span');
+      onlineStatus.className = 'glyphicon glyphicon-ok';
+      onlineStatus.innerHTML = 'online';
+      console.log(onlineStatus);
+      document.getElementsByClassName(selector)[0].append(onlineStatus);
     } else {
-      $(selector).children().last().remove()
+      document.getElementsByClassName(selector)[0].lastElementChild.remove();
     }
   }
 })
