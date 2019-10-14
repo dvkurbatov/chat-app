@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   def create
     @message = Message.create(author: current_user, listener: listener, text: params[:text])
+    byebug
     if listener.class.eql?(Channel)
       ActionCable.server.broadcast "channel_#{listener.id}",
         nickname: current_user.nickname,
@@ -8,7 +9,8 @@ class MessagesController < ApplicationController
     else
       ActionCable.server.broadcast "user_#{current_user.id}",
         nickname: current_user.nickname,
-        text: @message.text
+        text: @message.text,
+        listener: listener.id
     end
   end
 
