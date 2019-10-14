@@ -10,7 +10,6 @@ App.appearances = App.cable.subscriptions.create("AppearanceChannel", {
       let onlineStatus = document.createElement('span');
       onlineStatus.className = 'glyphicon glyphicon-ok';
       onlineStatus.innerHTML = 'online';
-      console.log(onlineStatus);
       document.getElementsByClassName(selector)[0].append(onlineStatus);
     } else {
       document.getElementsByClassName(selector)[0].lastElementChild.remove();
