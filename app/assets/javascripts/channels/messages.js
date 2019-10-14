@@ -1,17 +1,19 @@
-console.log(document.querySelector('head').dataset.channelType);
 App.messages = App.cable.subscriptions.create({
   channel: 'MessagesChannel',
   listener_type: document.querySelector('head').dataset.listenerType,
   listener_id: document.querySelector('head').dataset.listenerId
 }, {
   received: function(data) {
-    if (document.querySelector('div.dropdown').dataset.currentUserId == data.listener){
-    $("#empty_chat").remove();
-    if ($('#messages').children().length > 10){
-      $('#messages').children().first().remove();
+    console.log(data);
+    console.log(document.querySelector('head').dataset.listenerType == 'channel');
+    if ((document.querySelector('head').dataset.listenerId == data.author) || (document.querySelector('head').dataset.listenerType == 'channel')){
+      console.log(data.author);
+      $("#empty_chat").remove();
+      if ($('#messages').children().length > 10){
+        $('#messages').children().first().remove();
+      }
+      $("#messages").append(this.renderMessage(data));
     }
-    $("#messages").append(this.renderMessage(data));
-  }
   },
   connected: function(data) {
     console.log('connected');

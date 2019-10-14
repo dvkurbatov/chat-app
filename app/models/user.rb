@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   def appear
     self.update(online_status: true)
+    #AppearanceChannel.broadcast_to('users', action: 'appear', id: id )
     ActionCable.server.broadcast "users",
         action: 'appear',
         id: id

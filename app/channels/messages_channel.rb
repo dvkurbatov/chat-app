@@ -1,12 +1,13 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
-    if params[:listener_id] && params[:listener_type]
-      stream_from "#{params[:listener_type]}_#{params[:listener_id]}"
-    else
-      stream_from "channels"
+    if params[:listener_type].eql?('user')
+      stream_for current_user
+    elsif params[:listener_type].eql?('channel')
+      channel = Channel.find_by_id(params[:listener_id])
+      stream_for channel
     end
-
-    logger.info("#{Time.current}: subscribed calling! channel: #{params[:channel_id]}")
+    #stream_for current_user
+    #logger.info("#{Time.current}: subscribed calling! channel: }")
   end
 
   def unsubscribed
