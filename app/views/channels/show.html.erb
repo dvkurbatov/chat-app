@@ -1,28 +1,25 @@
-
-<h1><%= @channel.title %></h1>
-
-<div id="messages" data-channel-id="<%= @channel.id %>">
-  <% if @messages.present? %>
-    <% @messages.each do |message| %>
-    <div>
-        <span><%= message.user.nickname %>: <%= message.text %></span>
+<div class="container">
+  <div class='col-10 align-self-center'>
+    <h5><%= @channel.title %></h5>
+    <div id="messages">
+      <% if @messages.present? %>
+        <% @messages.each do |message| %>
+          <div>
+            <span><%= message.author.nickname %>: <%= message.text %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <div id='empty_chat'> Сообщений в чате нет </div>
+      <% end %>
     </div>
-    <% end %>
-  <% else %>
-  <div id='empty_chat'> Сообщений в чате нет </div>
-  <% end %>
-</div>
-<br>
-
-<div id='new_message_form'>
-<%= form_with(model: @message, url: messages_path(@message)) do |message_form| %>
-<%= message_form.label :text, "Введите сообщение"%>
-<%= message_form.text_field :text %>
-<%= message_form.hidden_field :channel_id, value: @channel.id %>
-<%= message_form.submit %>
-<% end %>
-</div>
-<br>
-<div>
-  <%= link_to 'Покинуть канал', channels_path, method: :get %>
+    <br>
+    <div id='new_message_form'>
+      <%= form_with(model: @message, url: messages_path(@message)) do |form| %>
+        <%= form.text_field :text, class: 'form-control', placeholder: 'Сообщение' %>
+        <%= form.hidden_field :channel_id, value: @channel.id %>
+        <%= form.button 'Отправить', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <br>
+  </div>
 </div>
